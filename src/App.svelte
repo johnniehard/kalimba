@@ -6,6 +6,12 @@
 	let started = false;
 	let loading = true;
 
+	const notes = [
+		"D4",
+		"C4",
+		"E4",
+	]
+
 	const sampler = new Tone.Sampler({
 		urls: {
 			"C4": "C4.wav",
@@ -55,9 +61,9 @@
 {:else}
 	<div class="kalimba">
 		<div class="tines">
-			<Tine note="D4" {sampler}/>
-			<Tine note="C4" {sampler}/>
-			<Tine note="E4" {sampler}/>
+			{#each notes as note}
+				<Tine {note} {sampler}/>
+			{/each}
 		</div>
 	</div>
 {/if}
