@@ -44,7 +44,7 @@
 	});
 
 	$: if(started) {
-		tineSizeScale = tineSizeScale.range([height, 50])
+		tineSizeScale = tineSizeScale.range([height - 15, 50])
 	}
 </script>
 
