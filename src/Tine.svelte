@@ -1,13 +1,12 @@
 <script>
     export let note;
-    let c4 = new Audio("C4.wav");
+    export let sampler;
 
     let tine;
     let isTouched = false;
 
     let playSound = () => {
-        c4.currentTime = 0;
-        c4.play();
+        sampler.triggerAttackRelease([note], 4)
     };
 
     let mouseDown = false
