@@ -1,6 +1,6 @@
 <script>
     export let note;
-    let c4;
+    let c4 = new Audio("C4.wav");
 
     let tine;
     let isTouched = false;
@@ -78,5 +78,4 @@
         }
     }}>
     {note}
-    <audio bind:this={c4} src="/C4.wav" />
 </div>
