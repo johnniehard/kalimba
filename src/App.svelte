@@ -6,7 +6,16 @@
 	let started = false;
 	let loading = true;
 
-	const notes = [ "C5", "A4", "F4", "D4", "C4", "E4", "G4", "B4", ]
+	const notes = [
+		{name: "C5", freq: 523.2},
+		{name: "A4", freq: 440},
+		{name: "F4", freq: 349.2},
+		{name: "D4", freq: 293.6},
+		{name: "C4", freq: 261.6},
+		{name: "E4", freq: 329.6},
+		{name: "G4", freq: 391.9},
+		{name: "B4", freq: 493.8},
+	]
 	const sampler = new Tone.Sampler({
 		urls: {
 			"C4": "C4.wav",

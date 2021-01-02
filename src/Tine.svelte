@@ -6,7 +6,7 @@
     let isTouched = false;
 
     let playSound = () => {
-        sampler.triggerAttackRelease([note], 4)
+        sampler.triggerAttackRelease([note.freq], 4)
     };
 
     let mouseDown = false
@@ -78,5 +78,5 @@
             playSound();
         }
     }}>
-    {note}
+    {note.name}
 </div>
