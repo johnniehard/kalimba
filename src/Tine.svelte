@@ -1,7 +1,9 @@
 <script>
     export let note;
     let c4;
-    let active = false;
+
+    let tine;
+    let isTouched = false;
 </script>
 
 <style>
@@ -16,32 +18,44 @@
         font-weight: bold;
         border-radius: 0 0 10px 10px;
     }
+
+    .active {
+        background: olive;
+    }
 </style>
 
+<svelte:body
+    on:touchmove={(e) => {
+        e.preventDefault();
+        const touch = e.touches[0];
+        const element = document.elementFromPoint(touch.pageX, touch.pageY);
+        let prevTouched = isTouched
+        isTouched = element === tine
+
+        if(prevTouched && !isTouched){
+            c4.currentTime = 0
+            c4.play()
+        }
+    }} />
+
 <div
-    class="tine"
+    class={`tine ${isTouched ? 'active' : ''}`}
+    bind:this={tine}
     on:mousedown={() => {
-        active = true;
+        isTouched = true;
     }}
     on:touchstart={() => {
-        active = true;
-        c4.currentTime = 0;
-        c4.play();
+        isTouched = true;
     }}
     on:mouseup={() => {
-        active = false;
+        isTouched = false;
     }}
     on:touchend={() => {
-        active = false;
+        isTouched = false;
     }}
     on:mouseleave={() => {
-        if (active) {
-            c4.currentTime = 0;
-            c4.play();
-        }
-    }}
-    on:touchleave={() => {
-        if (active) {
+        if (isTouched) {
+            isTouched = false
             c4.currentTime = 0;
             c4.play();
         }
