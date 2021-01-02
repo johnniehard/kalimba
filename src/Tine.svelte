@@ -1,15 +1,17 @@
 <script>
     export let note;
     export let sampler;
+    export let size;
 
     let tine;
     let isTouched = false;
 
     let playSound = () => {
-        sampler.triggerAttackRelease([note.freq], 4)
+        sampler.triggerAttackRelease([note.freq], 4);
     };
 
-    let mouseDown = false
+    let mouseDown = false;
+
 </script>
 
 <style>
@@ -45,31 +47,31 @@
         }
     }}
     on:mousedown={() => {
-        mouseDown = true
+        mouseDown = true;
     }}
     on:mouseup={() => {
-        mouseDown = false
-    }}   
-/>
+        mouseDown = false;
+    }}
+    on:touchend={() => {
+        isTouched = false;
+    }} />
 
 <div
+    style={`height: ${size}px;`}
     class={`tine ${isTouched ? 'active' : ''}`}
     bind:this={tine}
     on:mousedown={() => {
         isTouched = true;
     }}
     on:mouseenter={() => {
-        if(mouseDown){
-            isTouched = true
+        if (mouseDown) {
+            isTouched = true;
         }
     }}
     on:touchstart={() => {
         isTouched = true;
     }}
     on:mouseup={() => {
-        isTouched = false;
-    }}
-    on:touchend={() => {
         isTouched = false;
     }}
     on:mouseleave={() => {

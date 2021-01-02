@@ -1,10 +1,13 @@
 <script>
 	import * as Tone from "tone";
-
+	import { scaleLinear } from "d3-scale";
+	import { extent } from 'd3-array'
 	import Tine from "./Tine.svelte";
 
 	let started = false;
 	let loading = true;
+
+	let height;
 
 	const notes = [
 		{ name: "D6", freq: 1174 },
@@ -25,6 +28,10 @@
 		{ name: "C6", freq: 1046 },
 		{ name: "E6", freq: 1318 },
 	];
+
+	const notesExtent = extent(notes, d => d.freq)
+	let tineSizeScale = scaleLinear(notesExtent, [500, 50])
+
 	const sampler = new Tone.Sampler({
 		urls: {
 			C4: "C4.wav",
@@ -35,6 +42,10 @@
 	Tone.loaded().then(() => {
 		loading = false;
 	});
+
+	$: if(started) {
+		tineSizeScale = tineSizeScale.range([height, 50])
+	}
 </script>
 
 <style>
@@ -48,6 +59,7 @@
 
 	.tines {
 		background: orange;
+		height: 100%;
 		align-self: start;
 		justify-content: center;
 		padding: 30px;
@@ -72,9 +84,9 @@
 	</button>
 {:else}
 	<div class="kalimba">
-		<div class="tines">
+		<div class="tines" bind:clientHeight={height}>
 			{#each notes as note}
-				<Tine {note} {sampler} />
+				<Tine {note} {sampler} size={tineSizeScale(note.freq)}/>
 			{/each}
 		</div>
 	</div>
