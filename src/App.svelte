@@ -25,17 +25,18 @@
 		justify-content: center;
 		background: salmon;
 		height: 100%;
+		padding: 20px;
 	}
 
 	.tines {
 		background: orange;
 		align-self: start;
 		justify-content: center;
-		padding: 20px;
+		padding: 30px;
 		padding-top: 0;
 		display: flex;
 		align-items: start;
-		border-radius: 0 0 30px 30px;
+		border-radius: 30px;
 		gap: 10px;
 	}
 </style>
@@ -46,6 +47,7 @@
 	<button
 		on:click|preventDefault={async () => {
 			await Tone.start();
+			document.documentElement.requestFullscreen()
 			started = true;
 		}}>
 		Start Tone

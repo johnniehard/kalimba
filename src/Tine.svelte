@@ -19,10 +19,12 @@
         height: 100px;
         display: flex;
         align-items: end;
-        padding: 10px;
+        width: 30px;
+        justify-content: center;
+        padding-bottom: 7px;
         color: tomato;
         font-weight: bold;
-        border-radius: 0 0 10px 10px;
+        border-radius: 0 0 15px 15px;
     }
 
     .active {
