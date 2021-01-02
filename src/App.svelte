@@ -3,6 +3,7 @@
 	import { scaleLinear } from "d3-scale";
 	import { extent } from 'd3-array'
 	import Tine from "./Tine.svelte";
+	import Eyes from "./Eyes.svelte"
 
 	let started = false;
 	let loading = true;
@@ -50,17 +51,20 @@
 
 <style>
 	.kalimba {
+		flex-direction: column;
 		display: flex;
-		justify-content: center;
+		align-items: center;
 		background: salmon;
-		height: 100%;
+		height: 100vh;
 		padding: 20px;
+		gap: 10px;
 	}
 
 	.tines {
 		background: orange;
-		height: 100%;
-		align-self: start;
+		height: 60vh;
+		/* align-self: start; */
+		justify-self: start;
 		justify-content: center;
 		padding: 30px;
 		padding-top: 0;
@@ -83,7 +87,8 @@
 		Start Tone
 	</button>
 {:else}
-	<div class="kalimba">
+<div class="kalimba">
+		<Eyes />
 		<div class="tines" bind:clientHeight={height}>
 			{#each notes as note}
 				<Tine {note} {sampler} size={tineSizeScale(note.freq)}/>
