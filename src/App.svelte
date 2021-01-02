@@ -7,6 +7,10 @@
 	let loading = true;
 
 	const notes = [
+		{name: "D6", freq: 1174},
+		{name: "B5", freq: 987.7},
+		{name: "G5", freq: 783.9},
+		{name: "E5", freq: 659.2},
 		{name: "C5", freq: 523.2},
 		{name: "A4", freq: 440},
 		{name: "F4", freq: 349.2},
@@ -15,6 +19,12 @@
 		{name: "E4", freq: 329.6},
 		{name: "G4", freq: 391.9},
 		{name: "B4", freq: 493.8},
+		{name: "D5", freq: 587.3},
+		{name: "F5", freq: 698.4},
+		{name: "A5", freq: 880},
+		{name: "C6", freq: 1046},
+		{name: "E6", freq: 1318},
+
 	]
 	const sampler = new Tone.Sampler({
 		urls: {
