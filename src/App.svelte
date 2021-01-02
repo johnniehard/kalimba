@@ -1,6 +1,6 @@
 <script>
-	let c4;
-	let active = false;
+	import Tine from './Tine.svelte'
+
 </script>
 
 <style>
@@ -23,53 +23,12 @@
 		gap: 10px;
 	}
 
-	.tine {
-		user-select: none;
-		background: peachpuff;
-		height: 100px;
-		display: flex;
-		align-items: end;
-		padding: 10px;
-		color: tomato;
-		font-weight: bold;
-		border-radius: 0 0 10px 10px;
-	}
 </style>
 
 <div class="kalimba">
 	<div class="tines">
-		<div class="tine">D</div>
-		<div
-			class="tine"
-			on:mousedown={() => {
-				active = true;
-			}}
-			on:touchstart={() => {
-				active = true;
-				c4.currentTime = 0;
-					c4.play();
-			}}
-			on:mouseup={() => {
-				active = false;
-			}}
-			on:touchend={() => {
-				active = false;
-			}}
-			on:mouseleave={() => {
-				if (active) {
-					c4.currentTime = 0;
-					c4.play();
-				}
-			}}
-			on:touchleave={() => {
-				if (active) {
-					c4.currentTime = 0;
-					c4.play();
-				}
-			}}>
-			C
-			<audio bind:this={c4} src="/C4.wav" />
-		</div>
-		<div class="tine">E</div>
+		<Tine note="D" />
+		<Tine note="C" />
+		<Tine note="E" />
 	</div>
 </div>
