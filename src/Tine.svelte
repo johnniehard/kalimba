@@ -4,6 +4,13 @@
 
     let tine;
     let isTouched = false;
+
+    let playSound = () => {
+        c4.currentTime = 0;
+        c4.play();
+    };
+
+    let mouseDown = false
 </script>
 
 <style>
@@ -29,20 +36,31 @@
         e.preventDefault();
         const touch = e.touches[0];
         const element = document.elementFromPoint(touch.pageX, touch.pageY);
-        let prevTouched = isTouched
-        isTouched = element === tine
+        let prevTouched = isTouched;
+        isTouched = element === tine;
 
-        if(prevTouched && !isTouched){
-            c4.currentTime = 0
-            c4.play()
+        if (prevTouched && !isTouched) {
+            playSound();
         }
-    }} />
+    }}
+    on:mousedown={() => {
+        mouseDown = true
+    }}
+    on:mouseup={() => {
+        mouseDown = false
+    }}   
+/>
 
 <div
     class={`tine ${isTouched ? 'active' : ''}`}
     bind:this={tine}
     on:mousedown={() => {
         isTouched = true;
+    }}
+    on:mouseenter={() => {
+        if(mouseDown){
+            isTouched = true
+        }
     }}
     on:touchstart={() => {
         isTouched = true;
@@ -55,9 +73,8 @@
     }}
     on:mouseleave={() => {
         if (isTouched) {
-            isTouched = false
-            c4.currentTime = 0;
-            c4.play();
+            isTouched = false;
+            playSound();
         }
     }}>
     {note}
