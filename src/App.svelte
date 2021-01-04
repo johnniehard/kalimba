@@ -81,7 +81,6 @@
 	<button
 		on:click|preventDefault={async () => {
 			await Tone.start();
-			document.documentElement.requestFullscreen();
 			started = true;
 		}}>
 		Start Tone
